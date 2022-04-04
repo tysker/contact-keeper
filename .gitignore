@@ -232,5 +232,6 @@ fabric.properties
 
 httpRequest.http
 pwd
+node_modules
 
 # End of https://www.toptal.com/developers/gitignore/api/webstorm+all,node

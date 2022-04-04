@@ -230,4 +230,7 @@ fabric.properties
 !.idea/codeStyles
 !.idea/runConfigurations
 
+httpRequest.http
+pwd
+
 # End of https://www.toptal.com/developers/gitignore/api/webstorm+all,node

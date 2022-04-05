@@ -28,7 +28,7 @@ router.post(
     }
 
     // get user object from body
-    const { name, email, password } = req.body;
+    const { name, email, password, role} = req.body;
 
     try {
       let user = await User.findOne({ email });
@@ -41,6 +41,7 @@ router.post(
         name, // this is the same as writing name: name
         email,
         password,
+        role
       });
 
       // Password encryption. The 10 is default. It tells how secure the salt is.
@@ -55,6 +56,7 @@ router.post(
       const payload = {
         user: {
           id: user.id,
+          role: user.role
         },
       };
 

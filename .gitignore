@@ -233,4 +233,10 @@ fabric.properties
 httpRequest.http
 node_modules
 config/default.json
-# End of https://www.toptal.com/developers/gitignore/api/webstorm+all,node
+
+# React folder
+/client/node_modules
+/client/build
+/client/.env.local
+/client/env.test.local
+/client/env.production.local

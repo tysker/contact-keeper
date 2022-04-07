@@ -1,10 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
-const jwt = require('jsonwebtoken');
 const {body, validationResult} = require('express-validator'); //https://express-validator.github.io/docs/
 const auth = require('../middleware/auth');
-const User = require('../models/User.js');
 const Contact = require('../models/Contact.js');
 
 // @route   GET api/contacts
@@ -25,10 +23,8 @@ router.get('/', auth, async (req, res) => {
 // @desc    Add new contacts contact
 // @access  Private
 router.post('/',
-    [
-        auth,
-        body('name', 'Name is required').not().isEmpty()
-    ],
+    auth,
+    body('name', 'Name is required').not().isEmpty(),
     async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {

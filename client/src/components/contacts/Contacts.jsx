@@ -1,24 +1,50 @@
-import React, { useContext, Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import ContactContext from '../../context/contact/ContactContext';
-import PropTypes from 'prop-types';
 
 import ContactItem from './ContactItem';
-import ContactState from '../../context/contact/ContactState';
 
 const Contacts = props => {
   const contactContext = useContext(ContactContext);
 
-  const { contacts } = contactContext;
+  const { contacts, filtered } = contactContext;
 
+  if (contacts.length === 0) {
+    return <h4>Please add a contact</h4>;
+  }
   return (
     <Fragment>
-      {contacts.map(contact => (
-        <ContactItem key={contact.id} contact={contact} />
-      ))}
+      {filtered !== null ? (
+        <AnimatePresence>
+          {filtered.map(contact => (
+            <motion.div
+              key={contact.id}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ delay: 0.2 }}
+            >
+              <ContactItem contact={contact} />
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      ) : (
+        <AnimatePresence>
+          {contacts.map(contact => (
+            <motion.div
+              key={contact.id}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ delay: 0.2 }}
+            >
+              <ContactItem contact={contact} />
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      )}
     </Fragment>
   );
 };
-
-Contacts.propTypes = {};
 
 export default Contacts;

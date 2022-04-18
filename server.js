@@ -10,7 +10,7 @@ connectDB();
 // Init Middleware
 // Parse JSON bodies for this app. Make sure you put
 // app.use(express.json()) before your route handlers!
-app.use(express.json({ extends: false }));
+app.use(express.json({ extended: false }));
 
 // app.get('/', (req, res) =>
 //   res.json({ msg: 'Welcome to the contact keeper api' })

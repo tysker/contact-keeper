@@ -12,9 +12,9 @@ connectDB();
 // app.use(express.json()) before your route handlers!
 app.use(express.json({ extends: false }));
 
-app.get('/', (req, res) =>
-  res.json({ msg: 'Welcome to the contact keeper api' })
-);
+// app.get('/', (req, res) =>
+//   res.json({ msg: 'Welcome to the contact keeper api' })
+// );
 
 // Define Routes
 app.use('/api/users', require('./routes/users'));

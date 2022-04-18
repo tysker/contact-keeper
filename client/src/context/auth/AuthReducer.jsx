@@ -46,7 +46,7 @@ const AuthReducer = (state, action) => {
         error: null,
       };
     default:
-      throw new Error(`Unsupported type of: ${action.type}`);
+      return state;
   }
 };
 

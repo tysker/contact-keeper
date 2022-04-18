@@ -35,11 +35,12 @@ const AuthState = props => {
     try {
       const res = await axios.get(`${URL}/api/auth`);
 
-      dispatch({ type: USER_LOADED, payload: res.data });
-    } catch (err) {
       dispatch({
-        type: AUTH_ERROR,
+        type: USER_LOADED,
+        payload: res.data,
       });
+    } catch (err) {
+      dispatch({ type: AUTH_ERROR });
     }
   };
 
@@ -94,14 +95,10 @@ const AuthState = props => {
   };
 
   // Logout
-  const logout = () => {
-    dispatch({ type: LOGOUT });
-  };
+  const logout = () => dispatch({ type: LOGOUT });
 
-  // Clear Error
-  const clearErrors = () => {
-    dispatch({ type: CLEAR_ERRORS });
-  };
+  // Clear Errors
+  const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
 
   return (
     <AuthContext.Provider
@@ -118,7 +115,6 @@ const AuthState = props => {
         clearErrors,
       }}
     >
-      {/*props children are all the children that it wraps around. See App.jsx*/}
       {props.children}
     </AuthContext.Provider>
   );

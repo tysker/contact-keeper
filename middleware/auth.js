@@ -21,6 +21,7 @@ module.exports = function (req, res, next) {
 
     // add user to the request object
     req.user = decoded.user;
+    console.log('Decoded User: ', decoded.user);
     next();
   } catch (err) {
     res.status(401).json({ msg: 'Token is not valid' });

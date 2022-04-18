@@ -1,5 +1,8 @@
 const express = require('express');
+const cors = require('cors');
+const { CORS_OPTIONS } = require('../middleware/cors');
 const router = express.Router();
+router.use(cors(CORS_OPTIONS));
 
 const bcrypt = require('bcryptjs'); // https://www.npmjs.com/package/bcryptjs
 const jwt = require('jsonwebtoken');

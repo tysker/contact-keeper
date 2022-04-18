@@ -1,5 +1,8 @@
 const express = require('express');
+const cors = require('cors');
+const CORS_OPTIONS = require('../middleware/cors');
 const router = express.Router();
+router.use(cors(CORS_OPTIONS));
 
 const bcrypt = require('bcryptjs'); // https://www.npmjs.com/package/bcryptjs
 const jwt = require('jsonwebtoken');
@@ -26,9 +29,9 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-
+    console.log(cors);
     // get user object from body
-    const { name, email, password, role} = req.body;
+    const { name, email, password, role } = req.body;
 
     try {
       let user = await User.findOne({ email });
@@ -41,7 +44,7 @@ router.post(
         name, // this is the same as writing name: name
         email,
         password,
-        role
+        role,
       });
 
       // Password encryption. The 10 is default. It tells how secure the salt is.
@@ -56,7 +59,7 @@ router.post(
       const payload = {
         user: {
           id: user.id,
-          role: user.role
+          role: user.role,
         },
       };
 
@@ -74,6 +77,7 @@ router.post(
     } catch (error) {
       console.error(error.message);
       res.status(500).send('Server Error');
+      console.log(CORS_OPTIONS);
     }
   }
 );

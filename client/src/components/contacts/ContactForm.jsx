@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
 import ContactContext from '../../context/contact/ContactContext';
-import PropTypes from 'prop-types';
 
 const ContactForm = props => {
   const contactContext = useContext(ContactContext);
@@ -105,7 +104,5 @@ const ContactForm = props => {
     </form>
   );
 };
-
-ContactForm.propTypes = {};
 
 export default ContactForm;
